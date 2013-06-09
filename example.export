@@ -1,0 +1,6 @@
+export_type=PLAIN
+export_name=example
+export_print=033bd91234b117e4f0d644c3c95e35bf
+export_template=$ШЛЯХ_ДО_ШАБЛОНУ
+plain_path=$ШЛЯХ_ДО_ТЕКИ_ЕКСПОРТУ
+plain_naming=INDEX
