@@ -43,7 +43,7 @@ public class Plain extends Export.Exporter {
     }
 
     @Override
-    protected void doExport() {
+    protected void doExport() throws Exception {
         String fileName;
         //TODO: make this part according to specs.
         switch (this.currSchema.currConfig.getProperty("plain_naming")) {
@@ -57,27 +57,17 @@ public class Plain extends Export.Exporter {
                 fileName = this.exportedMessage.INDEX;
         }
         java.io.File exportFile = new java.io.File(this.currSchema.currConfig.getProperty("plain_path") + "/" + fileName);
-        try {
-            java.io.FileWriter exportWriter = new java.io.FileWriter(exportFile);
-            exportWriter.write(this.exportedContent);
-            exportWriter.close();
-            if ("1".equals(this.currSchema.currConfig.getProperty("opt_log"))) {
-                IOControl.serverWrapper.log(IOControl.EXPORT_LOGID + ":" + this.currSchema.name, 3, "прозведено експорт повідомлення " + this.exportedMessage.INDEX);
-            }
-            exportedMessage.PROPERTIES.add(new MessageClasses.MessageProperty(this.propertyType, "root", this.currSchema.currConfig.getProperty("export_print"), IOControl.serverWrapper.getDate()));
-        } catch (java.io.IOException ex) {
-            IOControl.serverWrapper.log(IOControl.EXPORT_LOGID + ":" + this.currSchema.name, 1, "неможливо провести запис до файлу " + exportFile.getAbsolutePath());
+        java.io.FileWriter exportWriter = new java.io.FileWriter(exportFile);
+        exportWriter.write(this.exportedContent);
+        exportWriter.close();
+        if ("1".equals(this.currSchema.currConfig.getProperty("opt_log"))) {
+            IOControl.serverWrapper.log(IOControl.EXPORT_LOGID + ":" + this.currSchema.name, 3, "прозведено експорт повідомлення " + this.exportedMessage.INDEX);
         }
+        exportedMessage.PROPERTIES.add(new MessageClasses.MessageProperty(this.propertyType, "root", this.currSchema.currConfig.getProperty("export_print"), IOControl.serverWrapper.getDate()));
     }
 
     @Override
-    public void tryRecovery() {
+    public Boolean tryRecovery() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    protected void resetState() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }
