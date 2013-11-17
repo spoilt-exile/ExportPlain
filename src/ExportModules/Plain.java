@@ -60,10 +60,6 @@ public class Plain extends Export.Exporter {
         java.io.FileWriter exportWriter = new java.io.FileWriter(exportFile);
         exportWriter.write(this.exportedContent);
         exportWriter.close();
-        if ("1".equals(this.currSchema.currConfig.getProperty("opt_log"))) {
-            IOControl.serverWrapper.log(IOControl.EXPORT_LOGID + ":" + this.currSchema.name, 3, "прозведено експорт повідомлення " + this.exportedMessage.INDEX);
-        }
-        exportedMessage.PROPERTIES.add(new MessageClasses.MessageProperty(this.propertyType, "root", this.currSchema.currConfig.getProperty("export_print"), IOControl.serverWrapper.getDate()));
     }
 
     @Override
