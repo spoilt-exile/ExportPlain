@@ -61,9 +61,4 @@ public class Plain extends Export.Exporter {
         exportWriter.write(this.exportedContent);
         exportWriter.close();
     }
-
-    @Override
-    public Boolean tryRecovery() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
