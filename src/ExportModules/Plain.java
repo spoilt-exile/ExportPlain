@@ -25,11 +25,8 @@ import Utils.IOControl;
  * Plain export class.
  * @author Stanislav Nepochatov <spoilt.exile@gmail.com>
  */
+@Utils.RibbonIOModule(type="PLAIN", property="EXPORT_PLAIN", api_version=1)
 public class Plain extends Export.Exporter {
-    
-    public static String type = "PLAIN";
-    
-    public static String propertyType = "EXPORT_PLAIN";
     
     /**
      * Constructor redirect.
