@@ -54,6 +54,7 @@ public class Plain extends Export.Exporter {
                 fileName = this.exportedMessage.INDEX;
         }
         java.io.File exportFile = new java.io.File(this.currSchema.currConfig.getProperty("plain_path") + "/" + fileName);
+        exportFile.createNewFile();
         java.io.FileWriter exportWriter = new java.io.FileWriter(exportFile);
         exportWriter.write(this.exportedContent);
         exportWriter.close();
